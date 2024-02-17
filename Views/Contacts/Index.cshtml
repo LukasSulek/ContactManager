@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ECoding_MVC_app.Models.DTO.ContactDTOs.ContactDTO>
+
+@{
+    ViewData["Title"] = "Contacts";
+}
+
+
+<div class="title-container">
+    <h1>Contacts</h1>
+    <span class="link create-button">
+        @Html.ActionLink("Create New", "Create")
+    </span>
+</div>
+
+
+
+
+
+
+
+<table class="table" id="contacts-table">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var contact in Model)
+            {
+                <tr>
+                    <td>@contact.FirstName</td>
+                    <td>@contact.LastName</td>
+                    <td>@contact.Email</td>
+                    <td>@contact.PhoneNumber</td>
+                    <td class="actions-container">
+                        <span class="link edit-button">
+                            @Html.ActionLink("Edit", "Edit", new { id = contact.Id })
+                        </span>
+                        <span class="link delete-button">
+                            @Html.ActionLink("Delete", "Delete", new { id = contact.Id })
+                        </span>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5">No contacts available</td>
+            </tr>
+        }
+    </tbody>
+</table>
